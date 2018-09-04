@@ -13,19 +13,19 @@ private:
 public:
 	Object() {}
 
-	Object(Vector position, Vector velocity, double mass) :
+	Object(const Vector &position, const Vector &velocity, const double mass) :
 		position(position), velocity(velocity), mass(mass) {}
 
-	Object(Vector position, double mass) :
+	Object(const Vector &position, const double mass) :
 		position(position), mass(mass) {}
 
-	Object(double mass) : mass(mass) {}
+	Object(const double mass) : mass(mass) {}
 
 	virtual ~Object() {}
 
 
 	double getMass() const;
-	void setMass(double value);
+	void setMass(const double value);
 
 	Vector getPosition() const;
 	void setPosition(const Vector &value);
@@ -38,7 +38,7 @@ public:
 	void applyForce(const Vector &force, const double time);
 	void applyForce(const double forceX, const double forceY, const double time);
 
-	void step(double time);
+	void step(const double time);
 
 };
 

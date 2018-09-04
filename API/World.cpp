@@ -1,22 +1,21 @@
 #include "World.hpp"
 
-
-std::vector<ptr<Object>> World::getObjects() const
+std::vector<ObjPtr> World::getObjects() const
 {
 	return Objects;
 }
 
 void World::addObject(Object &value)
 {
-	Objects.push_back(ptr<Object>(&value));
+	Objects.push_back(ObjPtr(&value));
 }
 
-void World::createObject(const Vector position, const double mass)
+void World::createObject(const Vector &position, const double mass)
 {
-	Objects.push_back(ptr<Object>(new Object(position, mass)));
+	Objects.push_back(ObjPtr(new Object(position, mass)));
 }
 
-void World::step(double time)
+void World::step(const double time)
 {
 	for (auto &obj1 : Objects)
 	{

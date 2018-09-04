@@ -5,6 +5,7 @@
 #include "API/Gravity.hpp"
 
 #define TIME_FACTOR 200000000
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Garavity, damn it!");

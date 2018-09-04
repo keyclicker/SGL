@@ -1,22 +1,12 @@
 #include "Object.hpp"
 
 
-Vector Object::getVelocity() const
-{
-	return velocity;
-}
-
-void Object::setVelocity(const Vector &value)
-{
-	velocity = value;
-}
-
 double Object::getMass() const
 {
 	return mass;
 }
 
-void Object::setMass(double value)
+void Object::setMass(const double value)
 {
 	mass = value;
 }
@@ -29,6 +19,16 @@ Vector Object::getPosition() const
 void Object::setPosition(const Vector &value)
 {
 	position = value;
+}
+
+Vector Object::getVelocity() const
+{
+	return velocity;
+}
+
+void Object::setVelocity(const Vector &value)
+{
+	velocity = value;
 }
 
 void Object::move(const Vector &value)
@@ -46,7 +46,7 @@ void Object::applyForce(const double forceX, const double forceY, const double t
 	applyForce(Vector(forceX, forceY), time);
 }
 
-void Object::step(double time)
+void Object::step(const double time)
 {
 	move(velocity * time);
 }

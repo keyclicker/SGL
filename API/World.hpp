@@ -5,13 +5,12 @@
 #include <memory>
 #include "Object.hpp"
 
-template<typename T>
-using ptr = std::shared_ptr<T>;
+using ObjPtr = std::shared_ptr<Object>;
 
 class World
 {
 private:
-	std::vector<ptr<Object>> Objects;
+	std::vector<ObjPtr> Objects;
 
 public:
 	World() {}
@@ -19,11 +18,11 @@ public:
 	World(const World &value) = delete;
 	World operator=(const World &value) = delete;
 
-	std::vector<ptr<Object>> getObjects() const;
+	std::vector<ObjPtr> getObjects() const;
 	void addObject(Object &value);
-	void createObject(const Vector position, const double mass);
+	void createObject(const Vector &position, const double mass);
 
-	void step(double time);
+	void step(const double time);
 
 	static double getG()
 	{

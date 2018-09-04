@@ -26,12 +26,12 @@ public:
 		return Vector(x - value.x, y - value.y);
 	}
 
-	Vector operator/(const double &value) const
+	Vector operator/(const double value) const
 	{
 		return Vector(x / value, y / value);
 	}
 
-	Vector operator*(const double &value) const
+	Vector operator*(const double value) const
 	{
 		return Vector(x * value, y * value);
 	}
