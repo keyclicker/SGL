@@ -9,6 +9,7 @@ private:
 	Vector position;
 	Vector velocity;
 	double mass;
+	bool IsStatic = false;
 
 public:
 	Object() {}
@@ -23,6 +24,8 @@ public:
 
 	virtual ~Object() {}
 
+	bool isStatic() const;
+	void setStatic(const bool val);
 
 	double getMass() const;
 	void setMass(const double value);

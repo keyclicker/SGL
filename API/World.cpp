@@ -1,4 +1,5 @@
 #include "World.hpp"
+#include <cmath>
 
 std::vector<ObjPtr> World::getObjects() const
 {
@@ -23,16 +24,18 @@ void World::step(const double time)
 		{
 			if (obj1 == obj2) continue; // fordebug
 
-			auto direction = (*obj2).getPosition() - (*obj1).getPosition();
+			auto direction = obj2->getPosition() - obj1->getPosition();
 			auto R = direction.length();
 
 			direction = direction / R;
 
-			auto gravityForce = direction * World::getG() *
-					(((*obj1).getMass() * (*obj2).getMass()) / (R*R));
+			double k = 2 * (1 + 2/R); //magic const
 
-			(*obj1).applyForce(gravityForce, time);
+			auto gravityForce = direction * World::getG() *
+					((obj1->getMass() * obj2->getMass()) / (std::pow(R, k)));
+
+			obj1->applyForce(gravityForce, time);
 		}
-		(*obj1).step(time);
+		obj1->step(time);
 	}
 }

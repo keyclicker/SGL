@@ -1,6 +1,16 @@
 #include "Object.hpp"
 
 
+bool Object::isStatic() const
+{
+	return IsStatic;
+}
+
+void Object::setStatic(const bool val)
+{
+	IsStatic = val;
+}
+
 double Object::getMass() const
 {
 	return mass;
@@ -18,7 +28,10 @@ Vector Object::getPosition() const
 
 void Object::setPosition(const Vector &value)
 {
-	position = value;
+	if (!IsStatic)
+	{
+		position = value;
+	}
 }
 
 Vector Object::getVelocity() const
@@ -33,7 +46,10 @@ void Object::setVelocity(const Vector &value)
 
 void Object::move(const Vector &value)
 {
-	position = position + value;
+	if (!IsStatic)
+	{
+		position = position + value;
+	}
 }
 
 void Object::applyForce(const Vector &force, const double time)

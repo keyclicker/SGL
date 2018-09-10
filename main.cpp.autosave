@@ -17,7 +17,7 @@ int main()
 
 	World world;
 
-	Object Earth(Vector(500,500), Vector(0, 0.0001), -7000000);
+	Object Earth(Vector(500,500), Vector(0, 0.0001), 7000000);
 	Object Moon(Vector(700,700), Vector(0.001,0), 300000);
 //	Object Sun(Vector(300,300), Vector(-0.001,0), 300000);
 
