@@ -5,6 +5,9 @@
 #include <memory>
 #include "Object.hpp"
 
+namespace sgl
+{
+
 using ObjPtr = std::shared_ptr<Object>;
 
 class World
@@ -20,6 +23,7 @@ public:
 
 	std::vector<ObjPtr> getObjects() const;
 	void addObject(Object &value);
+	void addObject(Object *value);
 	void createObject(const Vector &position, const double mass);
 
 	void step(const double time);
@@ -30,5 +34,7 @@ public:
 		return G;
 	}
 };
+
+}
 
 #endif // WORLD_HPP

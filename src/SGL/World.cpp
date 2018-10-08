@@ -1,6 +1,9 @@
 #include "World.hpp"
 #include <cmath>
 
+namespace sgl
+{
+
 std::vector<ObjPtr> World::getObjects() const
 {
 	return Objects;
@@ -9,6 +12,11 @@ std::vector<ObjPtr> World::getObjects() const
 void World::addObject(Object &value)
 {
 	Objects.push_back(ObjPtr(&value));
+}
+
+void World::addObject(Object *value)
+{
+	Objects.push_back(ObjPtr(value));
 }
 
 void World::createObject(const Vector &position, const double mass)
@@ -29,7 +37,7 @@ void World::step(const double time)
 
 			direction = direction / R;
 
-			double k = 2 * (1 + 2/R); //magic const
+			double k = 2 * (1 + 1/R); //magic const
 
 			auto gravityForce = direction * World::getG() *
 					((obj1->getMass() * obj2->getMass()) / (std::pow(R, k)));
@@ -38,4 +46,6 @@ void World::step(const double time)
 		}
 		obj1->step(time);
 	}
+}
+
 }

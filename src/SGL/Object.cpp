@@ -1,5 +1,7 @@
 #include "Object.hpp"
 
+namespace sgl
+{
 
 bool Object::isStatic() const
 {
@@ -34,6 +36,11 @@ void Object::setPosition(const Vector &value)
 	}
 }
 
+void Object::setPosition(const double x, const double y)
+{
+	setPosition(Vector(x, y));
+}
+
 Vector Object::getVelocity() const
 {
 	return velocity;
@@ -42,6 +49,11 @@ Vector Object::getVelocity() const
 void Object::setVelocity(const Vector &value)
 {
 	velocity = value;
+}
+
+void Object::setVelocity(const double x, const double y)
+{
+	setVelocity(Vector(x, y));
 }
 
 void Object::move(const Vector &value)
@@ -65,4 +77,6 @@ void Object::applyForce(const double forceX, const double forceY, const double t
 void Object::step(const double time)
 {
 	move(velocity * time);
+}
+
 }

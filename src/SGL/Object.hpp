@@ -3,6 +3,9 @@
 
 #include "Vector.hpp"
 
+namespace sgl
+{
+
 class Object
 {
 private:
@@ -32,9 +35,11 @@ public:
 
 	Vector getPosition() const;
 	void setPosition(const Vector &value);
+	void setPosition(const double x, const double y);
 
 	Vector getVelocity() const;
 	void setVelocity(const Vector &value);
+	void setVelocity(const double x, const double y);
 
 	void move(const Vector &value);
 
@@ -44,5 +49,7 @@ public:
 	void step(const double time);
 
 };
+
+}
 
 #endif // OBJECT_HPP

@@ -3,12 +3,15 @@
 
 #include <cmath>
 
+namespace sgl
+{
+
 class Vector
 {
 public:
 	double x, y;
 
-	Vector(const double x = 0, const double y = 0) : x(x), y(y) {}
+	explicit Vector(const double x = 0, const double y = 0) : x(x), y(y) {}
 	~Vector() {}
 
 	double length()
@@ -36,6 +39,8 @@ public:
 		return Vector(x * value, y * value);
 	}
 };
+
+}
 
 #endif // VECTOR_HPP
 
