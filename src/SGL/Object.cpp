@@ -5,12 +5,12 @@ namespace sgl
 
 bool Object::isStatic() const
 {
-	return IsStatic;
+	return static_;
 }
 
-void Object::setStatic(const bool val)
+void Object::setStatic(bool val)
 {
-	IsStatic = val;
+	static_ = val;
 }
 
 double Object::getMass() const
@@ -18,7 +18,7 @@ double Object::getMass() const
 	return mass;
 }
 
-void Object::setMass(const double value)
+void Object::setMass(double value)
 {
 	mass = value;
 }
@@ -30,13 +30,10 @@ Vector Object::getPosition() const
 
 void Object::setPosition(const Vector &value)
 {
-	if (!IsStatic)
-	{
-		position = value;
-	}
+	position = value;
 }
 
-void Object::setPosition(const double x, const double y)
+void Object::setPosition(double x, double y)
 {
 	setPosition(Vector(x, y));
 }
@@ -51,32 +48,32 @@ void Object::setVelocity(const Vector &value)
 	velocity = value;
 }
 
-void Object::setVelocity(const double x, const double y)
+void Object::setVelocity(double x, double y)
 {
 	setVelocity(Vector(x, y));
 }
 
 void Object::move(const Vector &value)
 {
-	if (!IsStatic)
-	{
-		position = position + value;
-	}
+	position = position + value;
 }
 
-void Object::applyForce(const Vector &force, const double time)
+void Object::applyForce(const Vector &force, double time)
 {
 	velocity = velocity + (force / mass) * time;
 }
 
-void Object::applyForce(const double forceX, const double forceY, const double time)
+void Object::applyForce(double forceX, double forceY, double time)
 {
 	applyForce(Vector(forceX, forceY), time);
 }
 
-void Object::step(const double time)
+void Object::step(double time)
 {
-	move(velocity * time);
+	if (!static_)
+	{
+		move(velocity * time);
+	}
 }
 
 }

@@ -12,42 +12,43 @@ private:
 	Vector position;
 	Vector velocity;
 	double mass;
-	bool IsStatic = false;
+	bool static_ = false;
+
+	void step(const double time);
 
 public:
+	friend class World;
+
 	Object() {}
 
-	Object(const Vector &position, const Vector &velocity, const double mass) :
+	Object(const Vector &position, const Vector &velocity, double mass) :
 		position(position), velocity(velocity), mass(mass) {}
 
-	Object(const Vector &position, const double mass) :
+	Object(const Vector &position, double mass) :
 		position(position), mass(mass) {}
 
-	Object(const double mass) : mass(mass) {}
+	Object(double mass) : mass(mass) {}
 
 	virtual ~Object() {}
 
 	bool isStatic() const;
-	void setStatic(const bool val);
+	void setStatic(bool val);
 
 	double getMass() const;
-	void setMass(const double value);
+	void setMass(double value);
 
 	Vector getPosition() const;
 	void setPosition(const Vector &value);
-	void setPosition(const double x, const double y);
+	void setPosition(double x, double y);
 
 	Vector getVelocity() const;
 	void setVelocity(const Vector &value);
-	void setVelocity(const double x, const double y);
+	void setVelocity(double x, double y);
 
 	void move(const Vector &value);
 
-	void applyForce(const Vector &force, const double time);
-	void applyForce(const double forceX, const double forceY, const double time);
-
-	void step(const double time);
-
+	void applyForce(const Vector &force, double time);
+	void applyForce(double forceX, double forceY, double time);
 };
 
 }

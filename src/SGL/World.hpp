@@ -13,7 +13,8 @@ using ObjPtr = std::shared_ptr<Object>;
 class World
 {
 private:
-	std::vector<ObjPtr> Objects;
+	std::vector<ObjPtr> objects;
+	double G = 0.0000000000667384; //Default G const
 
 public:
 	World() {}
@@ -21,18 +22,15 @@ public:
 	World(const World &value) = delete;
 	World operator=(const World &value) = delete;
 
+	double getG() const;
+	void setG(double value);
+
 	std::vector<ObjPtr> getObjects() const;
 	void addObject(Object &value);
 	void addObject(Object *value);
-	void createObject(const Vector &position, const double mass);
+	void createObject(const Vector &position, double mass);
 
-	void step(const double time);
-
-	static double getG()
-	{
-		static double G = 0.0000000000667384;
-		return G;
-	}
+	void step(double time);
 };
 
 }
