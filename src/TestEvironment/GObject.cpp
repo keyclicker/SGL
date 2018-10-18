@@ -1,10 +1,11 @@
 #include "GObject.hpp"
 
 GObject::GObject(QPointF point, QObject *parent):
-	QObject(parent), QGraphicsEllipseItem(point.x()-10, point.y()-10, 20, 20)
+    QObject(parent), QGraphicsEllipseItem(0, 0, 20, 20) //rect of the object
 {
 	object = new sgl::Object(200);
-	object->setPosition(point.x(), point.y());
+    object->setPosition(point.x()-10,point.y()-10); //we substract 10 to place center of cirlce in point coords
+    setPos(point.x()-10,point.y()-10);
 
 	QBrush brush;
 	brush.setStyle(Qt::SolidPattern);
@@ -21,8 +22,8 @@ GObject::~GObject()
 void GObject::paint(QPainter *painter,
 	const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-	this->setX(this->object->getPosition().x);
-	this->setY(this->object->getPosition().y);
+    qDebug()<<"Repaint GObject";
+    this->setPos(this->object->getPosition().x,this->object->getPosition().y);
 
 	QGraphicsEllipseItem::paint(painter, option, widget);
 }

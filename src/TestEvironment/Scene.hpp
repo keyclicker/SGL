@@ -15,12 +15,13 @@ public:
 	explicit Scene(QObject *parent = nullptr);
 	~Scene();
 
-	void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
-	void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+    void createObject(QPointF initCords);
+    void setObjectSpeed(QPointF releaseCords);
 
 	sgl::World world;
 
 private:
+    const int startingSpeedKoef=500000;
 	QPointF prevPos;
 	sgl::Object *curObj;
 };
