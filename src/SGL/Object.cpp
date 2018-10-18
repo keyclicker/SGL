@@ -46,6 +46,19 @@ Vector Object::getVelocity() const
 void Object::setVelocity(const Vector &value)
 {
 	velocity = value;
+
+    //limit our speed
+    if(velocity.x>maxSpeed)
+        velocity.x=maxSpeed;
+
+    if(velocity.y>maxSpeed)
+        velocity.y=maxSpeed;
+
+    if(velocity.x<-maxSpeed)
+        velocity.x=-maxSpeed;
+
+    if(velocity.y<-maxSpeed)
+        velocity.y=-maxSpeed;
 }
 
 void Object::setVelocity(double x, double y)
@@ -60,7 +73,7 @@ void Object::move(const Vector &value)
 
 void Object::applyForce(const Vector &force, double time)
 {
-	velocity = velocity + (force / mass) * time;
+    setVelocity(getVelocity()+(force / mass) * time);  //in order to limit speed
 }
 
 void Object::applyForce(double forceX, double forceY, double time)

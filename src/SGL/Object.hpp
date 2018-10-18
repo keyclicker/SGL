@@ -14,6 +14,8 @@ private:
 	double mass;
 	bool static_ = false;
 
+    const double maxSpeed=0.3; //speed limiter,needs to be changed
+
 	void step(const double time);
 
 public:

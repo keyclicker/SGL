@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QBrush>
 #include <QPen>
+#include <QDebug>
 
 #include "SGL/Gravity.hpp"
 
