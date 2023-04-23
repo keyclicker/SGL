@@ -17,21 +17,22 @@ Scene::~Scene()
 
 }
 
-void Scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+void Scene::createObject(QPointF initCords)
 {
-	//here comes kostil
-	GObject *object = new GObject(mouseEvent->scenePos(), (Scene*) this);
-	this->addItem(object);
+    GObject *object = new GObject(initCords, (Scene*) this); //create object and place it to our initCords
+    this->addItem(object);
 
-	this->curObj = object->object;
-	this->prevPos = mouseEvent->pos();
+    this->curObj = object->object;
+    this->prevPos = initCords;
 }
 
-void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
+void Scene::setObjectSpeed(QPointF releaseCords)
 {
-	auto v = (prevPos - mouseEvent->pos()) / 5; //magic
+    auto v = (prevPos - releaseCords) / startingSpeedKoef;
 
-	this->curObj->setVelocity(v.x(), v.y());
+    qDebug()<<"Mouse released "<<v.x()<<" "<<v.y();
 
-	this->world.addObject(curObj);
+    this->curObj->setVelocity(v.x(), v.y());
+
+    this->world.addObject(curObj);
 }
